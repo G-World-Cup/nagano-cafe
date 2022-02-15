@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get 'about', to: 'public/products#about'
   get 'customers/products', to: 'public/products#index'
   get 'customers/products', to: 'public/products#show'
-
-  resources :customers, only: [:show, :edit, :update]
-
+  scope module: 'public' do
+    resources :customers, only: [:show, :edit, :update]
+  end
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
