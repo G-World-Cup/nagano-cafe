@@ -1,0 +1,40 @@
+<h2><%= @customer.name %>さんの会員詳細</h2>
+<table class='table'>
+  <tr>
+	  <th>会員ID</th>
+	  <th><%= @customer %></th>
+  </tr>
+  <tr>
+	  <th>氏名</th>
+	  <th><%= @customer.name %></th>
+  </tr>
+  <tr>
+    <th>フリガナ</th>
+    <th><%#= フリガナを表示  %></th>
+  </tr>
+  <tr>
+    <th>郵便暗号</th>
+    <th><%= @customer.postcode %></th>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <th><%= @customer.address %></th>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <th><%= @customer.phone_number %></th>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <th><%= @customer.email %></th>
+  </tr>
+
+  <tr>
+    <th>会員ステータス</th>
+    <th><%#= @customer.ステータスを表示させる %></th>
+  </tr>
+</table>
+<div>
+  <%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-sm btn-success edit_customer_#{@customer.id}" %>
+  <%#= link_to '注文履歴一覧を見る', 注文履歴までのpath  %>
+</div>
