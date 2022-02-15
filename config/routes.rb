@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
   root 'public/products#top'
   get 'about', to: 'public/products#about'
-  get 'customers/products', to: 'public/products#index'
-  get 'customers/products', to: 'public/products#show'
+
+  #会員側
   scope module: 'public' do
     resources :customers, only: [:show, :edit, :update]
+    get 'customers/products', to: 'products#index'
+    get 'customers/products', to: 'products#show'
   end
+
+  #管理者側
+  namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
+    get 'top', to: 'homes#top'
+  end
+
+
+
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
