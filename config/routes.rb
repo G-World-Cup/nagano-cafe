@@ -7,12 +7,16 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     get 'customers/products', to: 'products#index'
     get 'customers/products', to: 'products#show'
+
   end
 
   #管理者側
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     get 'top', to: 'homes#top'
+
+    resources :products, only: [:new, :index, :show, :create]
+
   end
 
 

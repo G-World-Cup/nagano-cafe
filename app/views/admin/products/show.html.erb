@@ -1,0 +1,17 @@
+<h4>商品説明</h4>
+ <div>
+      <table class="table table-borderless">
+        <tr>
+          <td>商品名</td>
+          <td><%= @product.name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= @product.introduction %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= @product.genre.name %></td>
+        </tr>
+      </table>
+  </div>
