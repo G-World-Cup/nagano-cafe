@@ -1,0 +1,22 @@
+<h1>商品一覧</h1>
+<div>
+  <table>
+  <tr>
+    <th>商品ID</th>
+    <th>商品名</th>
+    <th>税抜価格</th>
+    <th>ジャンル</th>
+    <th>ステータス</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= link_to product.name, admin_product_path(product) %></td>
+      <td><%= product.price %></td>
+      <td><%= product.genre.name %></td>
+      <td><%= product.is_active %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+

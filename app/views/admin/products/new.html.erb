@@ -1,0 +1,16 @@
+<h1>商品新規登録</h1>
+<div>
+  <%= form_with model: @product, url: admin_products_path, method: :post do |f| %>
+  <div>
+    <%= f.label :image_id, "商品画像" %>
+    <%= f.attachment_field :image %>
+  </div>
+  <div>
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name, :placeholder => "商品名"  %>
+  </div>
+  <div>
+    <%= f.label :introduction, "商品説明" %>
+    <%= f.text_area :introduction, :placeholder => "ここに説明文を記述します" , class: "form-control col-sm-3" %>
+  </div>
+</div>
