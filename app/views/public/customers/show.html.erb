@@ -1,4 +1,41 @@
-<h1>My page</h1>
+<h1>マイページ</h1>
 <h2>登録情報</h2>
+　<table>
+　 <tr>
+    <td>氏名</td>
 
-<%= link_to "ログアウト", destroy_customer_session_path(@customer), method: :delete %>
+	    <td>
+		  <%= @customer.last_name %>
+		  <%= @customer.first_name %>
+		</td>
+   </tr>
+   <tr>
+	<td>フリガナ</td>
+		 <td>
+		   <%= @customer.last_name_kana %>
+		   <%= @customer.first_name_kana %>
+	     </td>
+   </tr>
+   <tr>
+	<td>郵便番号</td>
+		 <td><%= @customer.postcode %></td>
+   </tr>
+   <tr>
+    <td>住所</td>
+	  	 <td><%= @customer.address %></td>
+   </tr>
+   <tr>
+	<td>電話番号</td>
+		 <td><%= @customer.phone_number %></td>
+   </tr>
+   <tr>
+	<td>メールアドレス</td>
+	     <td><%= @customer.email %></td>
+   </tr>
+   </table>
+
+<div>
+  <%= link_to "編集する", edit_customer_path(@customer) %>
+</div>
+<div>配送先 <%= link_to "一覧を見る", "" %></div>
+<div>注文履歴 <%= link_to "一覧を見る", "" %></div>

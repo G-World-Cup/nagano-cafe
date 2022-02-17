@@ -1,0 +1,45 @@
+<h2>会員情報編集</h2>
+  <%= form_with model:@customer, local:true do |f| %>
+  <div>
+    <%= f.label :氏名 %>
+    <div>
+      姓<%= f.text_field :last_name %>
+      名<%= f.text_field :first_name %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :フリガナ %>
+      <div>
+      姓<%= f.text_field :last_name_kana %>
+      名<%= f.text_field :first_name_kana %>
+      </div>
+  </div>
+
+  <div>
+    <%= f.label :郵便番号 %>
+    <%= f.text_field :postcode%>
+  </div>
+
+  <div>
+    <%= f.label :住所 %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :電話番号 %>
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div>
+    <%= f.label :メールアドレス %>
+    <%= f.email_field :email%>
+  </div>
+
+  <div>
+    <%= f.submit "編集内容を保存" %>
+  </div>
+  <% end %>
+  <div>
+    <%= link_to "退会する" , withdraw_customer_path(@customer) %>
+  </div>
