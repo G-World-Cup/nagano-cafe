@@ -10,6 +10,17 @@
     <%= link_to "カート", "" %>
     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
   </span>
+<!--管理者側のnavbar-->
+<% elsif admin_signed_in? %>
+  <span style="margin-left: 100px;">
+    <!--ログイン済み-->
+    <%= link_to "LOGO", root_path %>
+    <%= link_to "商品一覧", admin_products_path %>
+    <%= link_to "会員一覧", admin_customers_path %>
+    <%= link_to "注文履歴一覧", "" %>
+    <%= link_to "ジャンル一覧", "" %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+  </span>
 <% else %>
     <!--未登録・未ログイン-->
   <span style="margin-left: 100px;">
