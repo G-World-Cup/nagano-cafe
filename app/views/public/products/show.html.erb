@@ -1,0 +1,9 @@
+<div>
+<p><%= @product.name %></p>
+<p><%= @product.introduction %></p>
+<p><strong>￥<%= @product.price %></strong>
+<% if @product.is_active %>
+  | 在庫あり
+<% end %>
+</p>
+</div>
