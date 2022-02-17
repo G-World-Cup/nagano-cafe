@@ -28,6 +28,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     get 'top', to: 'homes#top'
-    resources :products, only: [:new, :index, :show, :create]
+    resources :products, only: [:new, :index, :show, :create, :edit, :update]
   end
 end
