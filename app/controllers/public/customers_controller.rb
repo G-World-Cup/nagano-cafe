@@ -1,15 +1,13 @@
 class Public::CustomersController < ApplicationController
-
+  before_action :set_customer, only: [:show, :edit, :update, :withdraw, :switch]
 
   def show
   end
 
   def edit
-    @customer = Customer.find(params[:id])
   end
 
   def update
-    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:success] = "You have edited user data successfully."
       redirect_to customer_path(@customer)
@@ -19,15 +17,13 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw #退会画面を表示するアクション
-       @customer = Customer.find(params[:id])
   end
 
   def switch
-       @customer = Customer.find(params[:id])
-       if @customer.update(is_deleted: true)
-          sign_out current_customer #URLを踏ませずにコントローラーから直接サインアウトの指示を出す（device公式)
-       end
-       redirect_to root_path
+    if @customer.update(is_deleted: true)
+     sign_out current_customer #URLを踏ませずにコントローラーから直接サインアウトの指示を出す（device公式)
+    end
+    redirect_to root_path
   end
 
 
@@ -36,5 +32,9 @@ class Public::CustomersController < ApplicationController
   def customer_params
   	  params.require(:customer).permit(:is_deleted, :last_name, :first_name, :last_name_kana, :first_name_kana,
   	                                   :phone_number, :email, :password, :postcode, :address)
+  end
+
+  def set_customer
+    @customer = Customer.find(params[:id])
   end
 end
