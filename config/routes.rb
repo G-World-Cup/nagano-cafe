@@ -9,13 +9,11 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
 
-
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
   }
-
 
   #会員側
   scope module: 'public' do
