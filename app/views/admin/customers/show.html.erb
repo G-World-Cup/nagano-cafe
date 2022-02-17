@@ -1,40 +1,49 @@
-<h2><%= @customer.name %>さんの会員詳細</h2>
+<h2><%= @customer.last_name %>さんの会員詳細</h2>
 <table class='table'>
-  <tr>
-	  <th>会員ID</th>
-	  <th><%= @customer %></th>
-  </tr>
-  <tr>
-	  <th>氏名</th>
-	  <th><%= @customer.name %></th>
-  </tr>
-  <tr>
-    <th>フリガナ</th>
-    <th><%#= フリガナを表示  %></th>
-  </tr>
-  <tr>
-    <th>郵便暗号</th>
-    <th><%= @customer.postcode %></th>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <th><%= @customer.address %></th>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <th><%= @customer.phone_number %></th>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <th><%= @customer.email %></th>
-  </tr>
-
-  <tr>
-    <th>会員ステータス</th>
-    <th><%#= @customer.ステータスを表示させる %></th>
-  </tr>
+  <tbody>
+    <tr>
+  	  <th>会員ID</th>
+  	  <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+  	  <th>氏名</th>
+  	  <td><%= @customer.first_name %></td>
+  	  <td><%= @customer.last_name %></td>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td><%= @customer.first_name_kana %></td>
+      <td><%= @customer.last_name_kana %></td>
+    </tr>
+    <tr>
+      <th>郵便暗号</th>
+      <td><%= @customer.postcode %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @customer.phone_number %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+      <th>会員ステータス</th>
+      <td>
+        <% if @customer.is_deleted == false %>
+          <p>有効</p>
+        <% else %>
+          <p>退会</p>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <div>
-  <%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-sm btn-success edit_customer_#{@customer.id}" %>
+  <%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-sm btn-success edit_customer_#{@customer.id}" %>
   <%#= link_to '注文履歴一覧を見る', 注文履歴までのpath  %>
 </div>

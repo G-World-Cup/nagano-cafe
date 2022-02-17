@@ -12,12 +12,20 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= link_to(customer.id) do %>
-              <%= customer.name %>
+        <td><%= customer.id %></td>
+        <td><%= link_to customer do %>
+              <%= customer.first_name %>
+              <%= customer.last_name %>
             <% end %>
         </td>
         <td><%= customer.email %></td>
-        <td><%#= customer.ステータスを表示させたい %></td>
+        <td>
+          <% if customer.is_deleted == false %>
+            <p>有効</p>
+          <% else %>
+            <p>退会</p>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
