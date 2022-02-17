@@ -1,13 +1,8 @@
 class Public::ProductsController < ApplicationController
   before_action :set_product, only: [:show]
 
-  def top
-  end
-
-  def about
-  end
-
   def index
+    @products = Product.all
   end
 
   def show
