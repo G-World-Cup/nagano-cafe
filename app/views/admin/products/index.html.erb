@@ -12,9 +12,13 @@
     <tr>
       <td><%= product.id %></td>
       <td><%= link_to product.name, admin_product_path(product) %></td>
-      <td><%= product.price %></td>
-      <td><%= product.genre.name %></td>
-      <td><%= product.is_active %></td>
+      <td><%= product.price.to_s(:delimited) %></td>
+      <td></td>
+      <% if product.is_active == true %>
+      <td>販売中</td>
+      <% else %>
+      <td>販売停止中</td>
+      <% end %>
     </tr>
   <% end %>
   </table>
