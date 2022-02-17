@@ -17,9 +17,13 @@ Rails.application.routes.draw do
 
   #会員側
   scope module: 'public' do
-    get 'customers/products', to: 'products#index', as: 'products'
-    get 'customers/products/:id', to: 'products#show', as: 'product'
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update] do
+      collection do
+        resources :addresses, only: [:index, :create, :destroy, :edit, :update]
+        get 'products', to: 'products#index', as: 'products'
+        get 'products/:id', to: 'products#show', as: 'product'
+      end
+    end
     get '/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw_customer' #退会画面への遷移
     patch '/customers/:id/withdraw' => 'customers#switch', as: 'withdraw_switch_customer' #会員ステータスの切替
   end
@@ -28,6 +32,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     get 'top', to: 'homes#top'
-    resources :products, only: [:new, :index, :show, :create]
+    resources :products, only: [:new, :index, :show, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 end
+
+
+
+
