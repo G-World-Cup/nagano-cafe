@@ -1,17 +1,26 @@
-<h4>商品説明</h4>
- <div>
-      <table class="table table-borderless">
-        <tr>
-          <td>商品名</td>
-          <td><%= @product.name %></td>
-        </tr>
-        <tr>
-          <td>商品説明</td>
-          <td><%= @product.introduction %></td>
-        </tr>
-        <tr>
-          <td>ジャンル</td>
-          <td><%= @product.genre.name %></td>
-        </tr>
-      </table>
+<h1>商品詳細</h1>
+<div>
+  <div><%# 商品画像 %></div>
+  <div>
+  <p>商品名</p>
+  <p><%= @product.name %></p>
+  </div>
+  <p>商品説明</p>
+  <p><%= @product.introduction %></p>
+  </div>
+  <div>
+    <p>税込価格<br>（税抜価格）</p>
+    <%= @product.price.to_s(:delimited) %><span>円</span></p>
+  </div>
+  <div>
+    <% if @product.is_active == true %>
+    <p>販売中</p>
+    <% else %>
+    <p>販売停止中</p>
+    <% end %>
+  </div>
+</div>
+
+  <div>
+    <%= link_to "編集する",edit_admin_product_path(@product) %>
   </div>

@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :set_product, only: [:show]
+  before_action :set_product, only: [:show, :edit, :update]
 
   def new
     @product = Product.new
@@ -16,6 +16,14 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
+  end
+  
+  def edit
+  end
+  
+  def update
+    @product.update(product_params)
+    redirect_to admin_product_path(@product)
   end
 
   private

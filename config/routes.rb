@@ -2,22 +2,7 @@ Rails.application.routes.draw do
   root 'public/products#top'
   get 'about', to: 'public/products#about'
 
-  #会員側
-  scope module: 'public' do
-    resources :customers, only: [:show, :edit, :update]
-    get 'customers/products', to: 'products#index'
-    get 'customers/products', to: 'products#show'
-  end
-
-  #管理者側
-  namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update]
-    get 'top', to: 'homes#top'
-    resources :products, only: [:new, :index, :show, :create]
-  end
-
-
-  # 顧客用
+   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -31,5 +16,21 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  #会員側
+  scope module: 'public' do
+    resources :customers, only: [:show, :edit, :update]
+    get 'customers/products', to: 'products#index', as: 'products'
+    get 'customers/products', to: 'products#show', as: 'product'
+    resources :customers, only: [:show, :edit, :update]
+    get '/customers/id/withdraw' => 'customers#withdraw', as: 'withdraw_customer' #大会画面への遷移
+    patch '/customers/:id/withdraw' => 'customers#switch', as: 'withdraw_switch_customer' #会員ステータスの切り替え
+  end
+
+  #管理者側
+  namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
+    get 'top', to: 'homes#top'
+    resources :products, only: [:new, :index, :show, :create]
+  end
 end
