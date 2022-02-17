@@ -2,7 +2,7 @@
 
 <h1>商品一覧</h1>
 <% @products.each do |product| %>
-  <%= link_to product.name, product_path(product) %>
+  <%= link_to product.name, product_customers_path(product) %>
   <%= product.price %>
   <% product.is_active %>
 <% end %>

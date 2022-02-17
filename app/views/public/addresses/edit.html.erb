@@ -1,0 +1,19 @@
+<!--会員側の配送先編集画面-->
+
+<%= form_with model: @address do |f| %>
+  <div>
+    <div>
+      <%= f.label :郵便番号 %>
+      <%= f.text_field :postal_code, placeholder: '0000-0000' %>
+    </div>
+    <div>
+      <%= f.label :住所 %>
+      <%= f.text_field :shipping_address, placeholder: '山形県山形市香澄町' %>
+    </div>
+    <div>
+      <%= f.label :宛名 %>
+      <%= f.text_field :name, placeholder: '佐藤太郎' %>
+    </div>
+      <%= f.submit "保存" %>
+  </div>
+<% end %>
