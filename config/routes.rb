@@ -33,5 +33,6 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     get 'top', to: 'homes#top'
     resources :products, only: [:new, :index, :show, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 end
