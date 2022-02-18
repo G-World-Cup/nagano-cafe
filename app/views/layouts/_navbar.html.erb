@@ -6,7 +6,7 @@
     <%= link_to "LOGO", root_path %>
     ようこそ、<%= current_customer.last_name %>さん！
     <%= link_to "マイページ", customer_path(current_customer) %>
-    <%= link_to "商品一覧", products_path %>
+    <%= link_to "商品一覧", products_customers_path %>
     <%= link_to "カート", "" %>
     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
   </span>
@@ -26,7 +26,7 @@
   <span style="margin-left: 100px;">
     <%= link_to "LOGO", root_path %>
     <%= link_to "About", about_path %>
-    <%= link_to "商品一覧", products_path %>
+    <%= link_to "商品一覧", products_customers_path %>
     <%= link_to "新規登録", new_customer_registration_path %>
     <%= link_to "ログイン", new_customer_session_path %>
   </span>

@@ -1,3 +1,9 @@
+<% flash.each do |type, msg| %>
+  <div style="font-size: 26px;">
+    <%= msg %>
+  </div>
+<% end %>
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
