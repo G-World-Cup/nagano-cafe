@@ -7,20 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Customer.create!(
+Admin.create!(
     email: 'abc@123.com',
     password: '123456',
-    password_confirmation: '123456',
-    is_deleted: false
+    password_confirmation: '123456'
+  )
+
+Genre.create!(
+  name: 'Cake'
   )
 
   5.times do |i|
-    Product.create!(
-    name: 'Cheese cake',
-    introduction: 'Yummy cheese cake from Nagano!',
-    genre_id: 0,
-    image_id: '',
-    price: 450,
-    is_active: true
-    )
+    cake = Product.new(
+      name: 'Cheese cake',
+      introduction: 'Yummy cheese cake from Nagano!',
+      genre_id: 0,
+      image_id: '',
+      price: 450,
+      is_active: true,
+      genre: Genre.find(1)
+      )
+
+    cake.save
   end
