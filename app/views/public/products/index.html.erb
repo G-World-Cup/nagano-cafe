@@ -1,8 +1,35 @@
 <!--会員側の商品一覧-->
 
-<h1>商品一覧</h1>
-<% @products.each do |product| %>
-  <%= link_to product.name, product_customers_path(product) %>
-  <%= product.price %>
-  <% product.is_active %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="card mt-5 box-shadow">
+        <div class="card-header">
+          ジャンル検索
+        </div>
+        <div class="card-body">
+          <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="ジャンル検索" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="headline mt-5">
+        <h1>商品一覧</h1><p class="mt-auto">（全<%= @products.count %>件）</p>
+      </div>
+        <% @products.each do |product| %>
+        <div class="all-products">
+          <div>
+            <%= link_to product_customers_path(product) do %>
+              <%= image_tag product.product_image, size: "200x150" %>
+            <% end %>
+          </div>
+          <div><%= product.name %></div>
+          <div><%= product.price %>￥</div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
