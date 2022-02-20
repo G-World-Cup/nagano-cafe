@@ -41,18 +41,18 @@ class Public::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-   params.require(:cart_item).permit(:product_id, :amount)
+   params.require(:cart_item).permit(:product_id, :count)
   end
 
   def calculate(customer)
    total_price = 0
    customer.cart_items.each do |cart_item|
-     total_price += cart_item.amount * cart_item.product.price
+     total_price += cart_item.count * cart_item.product.price
    end
    return (total_price * 1.1).floor
   end
 
   def set_cart_item
-    @cart_item =CartItem.find(params[:id])
+    @cart_item = CartItem.find(params[:id])
   end
 end

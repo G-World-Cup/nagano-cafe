@@ -13,3 +13,9 @@
     </ul>
   </div>
 <% end %>
+
+<% flash.each do |type, msg| %>
+  <div style="font-size: 26px;">
+    <%= msg %>
+  </div>
+<% end %>
