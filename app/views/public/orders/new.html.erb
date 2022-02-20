@@ -1,6 +1,6 @@
 <h2>注文入力</h2>
 <!--url追加-->
-  <%= form_with model: @order, url: confirm_customer_orders_path, local: true do |f| %>
+  <%= form_with model: @order, url: confirm_customer_orders_path, method: :get, local: true do |f| %>
     <div>
       <h3>支払い方法</h3>
         <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>

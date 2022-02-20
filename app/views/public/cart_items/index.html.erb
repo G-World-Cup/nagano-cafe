@@ -28,14 +28,14 @@
              <% end %>
             </td>
             <td>
-              <%= (cart_item.product.price * 1.1).floor * cart_item.count %>
+              <%= ((cart_item.product.price * 1.1).floor * cart_item.count).to_s(:delimited) %>
             </td>
             <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete %></td>
           </tr>
         </tbody>
       <% end %>
         <td>
-          <div>合計金額 <%= @total_price %>円</div>
+          <div>合計金額 <%= @total_price.to_s(:delimited) %>円</div>
           <div><%= link_to "買い物を続ける", products_customers_path %></div>
           <% if @cart_items != [] %>
            <div>
