@@ -13,12 +13,16 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= order.customer_address %></td>
-        <td><%#= 注文した商品 恐らくeach文 %></td>
+        <td>
+          <% order.order_details.each do |order_detail| %>
+            <%= order_detail.product.name %><br />
+          <% end %>
+        </td>
         <td><%= (order.postage + order.total_price).to_s(:delimited) %>円</td>
         <td><%= order.order_status %></td>
-        <td><%= link_to "表示する", order_path(order) , class: "btn btn-primary" %></td>
+        <td><%= link_to "表示する", customer_order_path(order) , class: "btn btn-primary" %></td>
       </tr>
     <% end %>
   </thead>

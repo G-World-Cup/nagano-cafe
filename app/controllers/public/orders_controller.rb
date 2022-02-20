@@ -9,15 +9,15 @@ class Public::OrdersController < ApplicationController
     cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
     if @order.save
-      cart_products.each do |cart|
-        order_detail = OrderItem.new
-        order_detail.product_id = cart.product_id
-        order_detail.order_id = @order.id
-        order_detail.count = cart.count
-        order_detail.price = cart.product.add_tax
+      cart_items.each do |cart_item| #productsからitemsに変更
+        order_detail = OrderDetail.new
+        order_detail.product_id = cart_item.product_id #商品idを注文商品idに代入
+        order_detail.order_id = @order.id #注文商品に注文idを紐付け
+        order_detail.count = cart_item.count #商品の個数を注文商品の個数に代入
+        order_detail.price = cart_item.product.add_tax #消費税込みに計算して代入
         order_detail.save
       end
-    redirect_to complete_orders_path
+    redirect_to complete_customer_orders_path
     cart_items.destroy_all
     else
       @order = Order.new(order_params)
@@ -39,15 +39,15 @@ class Public::OrdersController < ApplicationController
     # 自身の住所
     if params[:order][:address_id] == "1"
       @order = Order.new(order_params)
-      @order.customer_postcode = current_customer.customer_postcode
-      @order.customer_address = current_customer.customer_address
-      @order.name = current_customer.first_name + current_customer.last_name
+      @order.customer_postcode = current_customer.postcode
+      @order.customer_address = current_customer.address
+      @order.customer_name = current_customer.first_name + current_customer.last_name
     # 登録済みの住所
     elsif params[:order][:address_id] == "2"
       @order = Order.new(order_params)
       @address = Address.find(params[:order][:address_id])
-      @order.customer_postcode = @address.customer_postcode
-      @order.address = @address.address
+      @order.customer_postcode = @address.postcode
+      @order.customer_address = @address.address
       @order.customer_name = @address.customer_name
     # 新しいお届け先
     elsif params[:order][:address_id] == "3"
