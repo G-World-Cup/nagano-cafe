@@ -14,11 +14,10 @@
         <tbody>
           <% @cart_items.each do |cart_item| %>
             <tr>
-              <td><%#= image_tag product.image, size: '50x50' %></td>
-              <td><%= cart_item.name %></td> <!-- 商品名 -->
-              <td><%= (cart.item.price).to_s(:delimited) %>円</td><!-- 金額 -->
-              <td><%= cart.count %></td> <!-- 個数 -->
-              <td><%= (cart.item.price*cart.count).to_s(:delimited) %>円</td> <!-- 小計 -->
+              <td><%= cart_item.product.name %></td> <!-- 商品名 -->
+              <td><%= cart_item.product.price %>円</td><!-- 金額 -->
+              <td><%= cart_item.count %></td> <!-- 個数 -->
+              <td><%= (cart_item.product.price*cart_item.count).to_s(:delimited) %>円</td> <!-- 小計 -->
             </tr>
           <% end %>
         </thody>
@@ -28,15 +27,15 @@
       <table class="table">
         <tr>
           <th>送料</th>
-          <td><%= @postage %>円</td>
+          <td><%= @order.postage %>円</td>
         </tr>
         <tr>
           <th>商品合計</th>
-          <td><%= @total.to_s(:delimited) %>円</td>
+          <td><%= @total_price.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>請求金額</td>
-          <td><%= (@postage + @total).to_s(:delimited) %>円</td>
+          <td><%= (@order.postage + @total_price).to_s(:delimited) %>円</td>
         </tr>
       </table>
     </div>

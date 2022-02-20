@@ -1,41 +1,31 @@
 class Public::OrdersController < ApplicationController
   before_action :set_order, only: [:show]
+  before_action :authenticate_customer!
 
   def new
     @order = Order.new
+    @total_price = calculate(current_customer)
   end
 
   def create
-    cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
+
     if @order.save
-      cart_items.each do |cart_item| #productsからitemsに変更
-        order_detail = OrderDetail.new
-        order_detail.product_id = cart_item.product_id #商品idを注文商品idに代入
-        order_detail.order_id = @order.id #注文商品に注文idを紐付け
-        order_detail.count = cart_item.count #商品の個数を注文商品の個数に代入
-        order_detail.price = cart_item.product.add_tax #消費税込みに計算して代入
-        order_detail.save
-      end
-    redirect_to complete_customer_orders_path
-    cart_items.destroy_all
+      redirect_to complete_customer_orders_path
     else
       @order = Order.new(order_params)
       render :new
     end
   end
 
-
   def confirm
     # カートアイテムの情報
     @cart_items = current_customer.cart_items.all
-    # 送料
-    @postage = 800
-    # 合計額
-    @total = @cart_items.inject(0) { |sum, product| sum + product.add_tax }
 
+    # 商品の合計額
+    @total_price = calculate(current_customer)
 
-
+    # newページで選択した住所の表示
     # 自身の住所
     if params[:order][:address_id] == "1"
       @order = Order.new(order_params)
@@ -55,7 +45,6 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-
   def complete
   end
 
@@ -64,11 +53,18 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @total_price = calculate(current_customer)
   end
 
-
-
   private
+
+  def calculate(current_customer)
+   total_price = 0
+   current_customer.cart_items.each do |cart_item|
+     total_price += cart_item.count * cart_item.product.price
+   end
+   return (total_price * 1.1).floor
+  end
 
   def set_order
     @order = Order.find(params[:id])
