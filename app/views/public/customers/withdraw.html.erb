@@ -1,14 +1,22 @@
-<h1>本当に退会しますか？</h1>
-  <div>
-    <p>退会すると、会員登録情報やこれまでの購入履歴が閲覧できなくなります。</p>
-    <p>退会する場合は、「退会する」をクリックしてください。</p>
+<div class="container">
+  <div class="row">
+    <div class="offset-1 col-6 m-auto">
+      <h1 class="red-border px-3">本当に退会しますか？</h1>
+
   </div>
   <div>
-    <%= link_to "退会しない" ,customer_path(@customer) %>
-    <!-- マイページへ-->
+    <div class="m-auto">
+      <p>退会すると、会員登録情報やこれまでの購入履歴が閲覧できなくなります。</p>
+      <p>退会する場合は、「退会する」をクリックしてください。</p>
+    </div>
   </div>
-  <div>
-    <%= link_to "退会する" , withdraw_switch_customer_path(@customer),method: :patch %>
+
+  <div class="m-auto">
+      <%= link_to "退会しない" ,customer_path(@customer), class:"btn btn-primary" %>
+      <!-- マイページへ-->
+      <%= link_to "退会する" , withdraw_switch_customer_path(@customer),method: :patch, data: {confirm: "本当に退会してもよろしいですか？"}, class:"btn btn-danger" %>
     <!-- 会員ステータスを無効に切り替えるswichアクションを呼ぶ-->
   </div>
+  </div>
+<div
 
