@@ -6,4 +6,11 @@
   | 在庫あり
 <% end %>
 </p>
+<div>
+  <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+  <%= f.select :count, *[1..5], placeholder: "個数選択" %>個
+  <%= f.hidden_field :product_id, :value => @product.id %>
+  <%= f.submit "カートに入れる" %>
+  <% end %>
+ </div>
 </div>
