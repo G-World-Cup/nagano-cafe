@@ -13,7 +13,7 @@
       <td><%= product.id %></td>
       <td><%= link_to product.name, admin_product_path(product) %></td>
       <td><%= product.price.to_s(:delimited) %></td>
-      <td></td>
+      <td><%= product.genre.name %></td>
       <% if product.is_active == true %>
       <td>販売中</td>
       <% else %>

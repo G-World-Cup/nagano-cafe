@@ -1,12 +1,18 @@
 <h1>商品詳細</h1>
 <div>
-  <div><%# 商品画像 %></div>
+  <div>
+  <p>商品画像</p>
+  </div>
   <div>
   <p>商品名</p>
   <p><%= @product.name %></p>
   </div>
   <p>商品説明</p>
   <p><%= @product.introduction %></p>
+  </div>
+  <div>
+    <p>ジャンル</p>
+    <p><%= @product.genre.name %></p>
   </div>
   <div>
     <p>税込価格<br>（税抜価格）</p>

@@ -3,7 +3,7 @@
   <%= form_with model: @product, url: admin_products_path do |f| %>
   <div>
     <%= f.label :image_id, "商品画像" %>
-  <%#商品画像 %>
+    <%= f.file_field :image %>
   </div>
   <div>
     <%= f.label :name, "商品名" %>
@@ -14,8 +14,9 @@
     <%= f.text_area :introduction, :placeholder => "ここに説明文を記述します"  %>
   </div>
   <div>
+    <%= f.label :genre_id, "ジャンル" %>
+    <%= f.collection_select :genre_id, @genre, :id, :name, include_blank: "選択して下さい" %>
   </div>
-
   <div>
     <%= f.label :price, "税抜価格" %>
     <%= f.text_field :price, :placeholder => "1000" %><span>円</span>

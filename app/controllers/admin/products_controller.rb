@@ -3,6 +3,7 @@ class Admin::ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @genre = Genre.all
   end
 
   def create
@@ -17,10 +18,11 @@ class Admin::ProductsController < ApplicationController
 
   def show
   end
-  
+
   def edit
+    @genre = Genre.all
   end
-  
+
   def update
     @product.update(product_params)
     redirect_to admin_product_path(@product)
