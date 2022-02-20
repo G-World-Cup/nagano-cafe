@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         resources :orders, only: [:new, :create, :index, :show] do
           # ルート修正
           collection do
-            post :confirm
+            get :confirms
             get :complete
           end
         end
