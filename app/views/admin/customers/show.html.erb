@@ -1,49 +1,55 @@
-<h2><%= @customer.last_name %>さんの会員詳細</h2>
-<table class='table'>
-  <tbody>
-    <tr>
-  	  <th>会員ID</th>
-  	  <td><%= @customer.id %></td>
-    </tr>
-    <tr>
-  	  <th>氏名</th>
-  	  <td><%= @customer.first_name %></td>
-  	  <td><%= @customer.last_name %></td>
-    </tr>
-    <tr>
-      <th>フリガナ</th>
-      <td><%= @customer.first_name_kana %></td>
-      <td><%= @customer.last_name_kana %></td>
-    </tr>
-    <tr>
-      <th>郵便暗号</th>
-      <td><%= @customer.postcode %></td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td><%= @customer.address %></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td><%= @customer.phone_number %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= @customer.email %></td>
-    </tr>
-    <tr>
-      <th>会員ステータス</th>
-      <td>
-        <% if @customer.is_deleted == false %>
-          <p>有効</p>
-        <% else %>
-          <p>退会</p>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div>
-  <%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-sm btn-success edit_customer_#{@customer.id}" %>
-  <%#= link_to '注文履歴一覧を見る', 注文履歴までのpath  %>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mt-5">
+      <h2><%= @customer.last_name %>さんの会員詳細</h2>
+      <table class='table'>
+        <tbody>
+          <tr>
+        	  <th>会員ID</th>
+        	  <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+        	  <th>氏名</th>
+        	  <td><%= @customer.first_name %></td>
+        	  <td><%= @customer.last_name %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @customer.first_name_kana %></td>
+            <td><%= @customer.last_name_kana %></td>
+          </tr>
+          <tr>
+            <th>郵便暗号</th>
+            <td><%= @customer.postcode %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @customer.phone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <th>会員ステータス</th>
+            <td>
+              <% if @customer.is_deleted == false %>
+                <p>有効</p>
+              <% else %>
+                <p>退会</p>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-sm btn-success edit_customer_#{@customer.id}" %>
+        <%= link_to '注文履歴一覧', admin_order_path, class: 'btn btn-sm btn-primary ms-4' %>
+      </div>
+    </div>
+  </div>
 </div>

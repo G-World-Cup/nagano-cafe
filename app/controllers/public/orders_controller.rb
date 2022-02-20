@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :set_order, only: [:show]
 
   def new
     @order = Order.new

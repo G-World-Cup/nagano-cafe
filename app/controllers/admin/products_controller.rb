@@ -7,8 +7,11 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to admin_product_path(@product)
+    if @product.save
+      redirect_to admin_product_path(@product)
+    else
+      render 'new'
+    end
   end
 
   def index
@@ -17,10 +20,10 @@ class Admin::ProductsController < ApplicationController
 
   def show
   end
-  
+
   def edit
   end
-  
+
   def update
     @product.update(product_params)
     redirect_to admin_product_path(@product)
@@ -33,6 +36,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :genre_id, :image_id, :introduction, :price, :is_active)
+    params.require(:product).permit(:name, :genre_id, :image, :introduction, :price, :is_active)
   end
 end

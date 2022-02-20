@@ -20,7 +20,7 @@
           <%= link_to "商品一覧", products_customers_path, class: 'nav-link active' %>
         </li>
         <li class="nav-item">
-          <%= link_to "カート", "", class: 'nav-link active' %>
+          <%= link_to "カート", cart_items_path, class: 'nav-link active' %>
         </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link active' %>
@@ -36,10 +36,10 @@
           <%= link_to "会員一覧", admin_customers_path, class: 'nav-link active' %>
         </li>
         <li class="nav-item">
-          <%= link_to "注文履歴一覧", "", class: 'nav-link active' %>
+          <%= link_to "注文履歴一覧", admin_orders_path, class: 'nav-link active' %>
         </li>
         <li class="nav-item">
-          <%= link_to "ジャンル一覧", "", class: 'nav-link active' %>
+          <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link active' %>
         </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link active' %>

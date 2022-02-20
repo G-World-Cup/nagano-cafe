@@ -1,15 +1,21 @@
 class Public::AddressesController < ApplicationController
+  before_action :authenticate_customer!
   before_action :set_address, only: [:edit, :update, :destroy]
 
   def index
     @addresses = Address.all
+    @address = Address.new
   end
 
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
-    @address.save
-    redirect_to addresses_path
+    if @address.save
+      redirect_to addresses_path
+    else
+      @address = Address.all
+      render 'index'
+    end
   end
 
   def edit
@@ -21,6 +27,8 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
+    @address.destroy
+    redirect_to addresses_path
   end
 
   private
@@ -30,6 +38,6 @@ class Public::AddressesController < ApplicationController
   end
 
   def address_params
-    params[:address].permit(:name, :postal_code, :shipping_address, :customer_id, :id)
+    params.require(:address).permit(:name, :postal_code, :shipping_address, :customer_id)
   end
 end

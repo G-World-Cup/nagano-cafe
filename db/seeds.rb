@@ -13,9 +13,12 @@ Admin.create!(
     password_confirmation: '123456'
   )
 
-Genre.create!(
-  name: 'Cake'
-  )
+Genre.create!(name: 'ケーキ')
+Genre.create!(name: 'プリン')
+Genre.create!(name: 'タルト')
+Genre.create!(name: 'クッキー')
+Genre.create!(name: '和菓子')
+Genre.create!(name: 'ドーナツ')
 
   5.times do |i|
     cake = Product.new(

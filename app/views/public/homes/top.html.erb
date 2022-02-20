@@ -29,7 +29,17 @@
         <h3>新着商品</h3>
       </div>
       <div>
-        <!--Products.each do |product| ...-->
+        <% @products.each do |product| %>
+        <div class="all-products">
+          <div>
+            <%= link_to product_customers_path(product) do %>
+              <%= image_tag product.product_image, size: "200x150" %>
+            <% end %>
+          </div>
+          <div><%= product.name %></div>
+          <div><%= product.price.to_s(:delimited) %>￥</div>
+        </div>
+        <% end %>
       </div>
         <p class="text-end fs-5"><%= link_to "全ての商品へ", "", class: 'text-decoration-none' %></p>
       </div>
