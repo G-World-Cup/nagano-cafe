@@ -1,26 +1,38 @@
-<h1>商品一覧</h1>
-<div>
-  <table>
-  <tr>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-  </tr>
-  <% @products.each do |product| %>
-    <tr>
-      <td><%= product.id %></td>
-      <td><%= link_to product.name, admin_product_path(product) %></td>
-      <td><%= product.price.to_s(:delimited) %></td>
-      <td><%= product.genre.name %></td>
-      <% if product.is_active == true %>
-      <td>販売中</td>
-      <% else %>
-      <td>販売停止中</td>
-      <% end %>
-    </tr>
-  <% end %>
-  </table>
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-8 m-auto">
+      <div class="headline">
+        <h1>商品一覧</h1>
+        <%= link_to new_admin_product_path, class: 'ms-auto fs-3 tcolor' do %>
+          <i class="fas fa-plus"></i>
+        <% end %>
+      </div>
+        <table class="table mt-2">
+          <thead>
+            <tr>
+              <th>商品ID</th>
+              <th>商品名</th>
+              <th>税抜価格</th>
+              <th>ジャンル</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%= product.id %></td>
+                <td><%= link_to product.name, admin_product_path(product) %></td>
+                <td><%= product.price.to_s(:delimited) %>￥</td>
+                <td><%= product.genre.name %></td>
+                <% if product.is_active == true %>
+                <td>販売中</td>
+                <% else %>
+                <td>販売停止中</td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
 </div>
-
