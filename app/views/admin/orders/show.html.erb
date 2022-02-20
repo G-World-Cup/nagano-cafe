@@ -3,7 +3,7 @@
   <table>
     <tr>
       <td>購入者</td>
-      <td><%= @order.customer.name %></td>
+      <td><%= link_to @order.customer.first_name + order.customer.last_name, admin_customer_path(@order.customer) %></td>
     </tr>
     <tr>
       <td>注文日</td>
@@ -12,7 +12,7 @@
     <tr>
       <td>配送先</td>
       <td><%= @order.customer_postcode %><%= @order.customer_address %><br>
-      <%= @order.customer.name %></td>
+      <%= @order.customer.first_name + order.customer.last_name %></td>
     </tr>
     <tr>
       <td>支払方法</td>
@@ -22,9 +22,10 @@
       <td>注文ステータス</td>
       <td>
         <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
-      <% end %>
+        <%= f.select :order_status, Order.order_statuses.keys %>
+        <%= f.submit '更新' %>
+        <% end %>
       </td>
-      
     </tr>
   </table>
 </div>
@@ -38,6 +39,18 @@
 　        <td>小計</td>
 　        <td>制作ステータス</td>
         </tr>
+        <%= @order_details. each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.product.name %></td>
+          <td><%= order_detail.price.to_s(:delimited) %></td>
+          <td><%= order_detail.count %></td>
+          <td><%= order_detail.price * order_detail.count %></td>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
+          <td><%=f.select :making_status, OrderDetail.making_statuses.keys %></td>
+          <td><%=f.submit "更新" %></td>
+          <% end %>
+        </tr>
+        <% end %>
 　    </thead>
 　  </table>
 　</div>
