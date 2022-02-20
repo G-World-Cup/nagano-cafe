@@ -25,15 +25,16 @@ Rails.application.routes.draw do
         get 'products/:id', to: 'products#show', as: 'product'
         delete '/cart_items' => 'cart_items#destroy_all' #カート内アイテムを全て削除
       end
+      # ルート修正
+      resources :orders, only: [:new, :create, :index, :show] do
+        collection do
+          post :confirm
+          get :complete
+        end
+      end
     end
     get '/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw_customer' #退会画面への遷移
     patch '/customers/:id/withdraw' => 'customers#switch', as: 'withdraw_switch_customer' #会員ステータスの切替
-    resources :orders, only: [:new, :create, :index, :show] do
-      collection do
-        post :confirm
-        get :complete
-      end
-    end
   end
 
   #管理者側
