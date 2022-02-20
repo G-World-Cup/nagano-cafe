@@ -25,7 +25,7 @@ Rails.application.routes.draw do
         get 'products/:id', to: 'products#show', as: 'product'
         delete '/cart_items' => 'cart_items#destroy_all' #カート内アイテムを全て削除
       end
-      　resources :orders, only: [:new, :create, :index, :show] do
+        resources :orders, only: [:new, :create, :index, :show] do
           # ルート修正
           collection do
             post :confirm
