@@ -32,7 +32,7 @@ class Public::OrdersController < ApplicationController
     # 送料
     @postage = 800
     # 合計額
-    @total = @cart_items.inject(0) { |sum, item| sum + item.add_tax }
+    @total = @cart_items.inject(0) { |sum, product| sum + product.add_tax }
 
 
 
