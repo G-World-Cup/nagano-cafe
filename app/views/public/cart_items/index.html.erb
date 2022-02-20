@@ -16,10 +16,7 @@
         <% @cart_items.each do |cart_item| %>
           <tbody>
             <tr>
-              <td>
-                <%= cart_item.product.name %></>
-                <%= image_tag cart_item.product, :image, size: "50x50" %>
-              </td>
+              <td><%= cart_item.product.name %></>
               <td><%= (cart_item.product.price * 1.1).floor %></td>
               <td>
                <%= form_with model:cart_item do |f| %>
