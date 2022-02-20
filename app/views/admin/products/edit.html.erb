@@ -4,7 +4,7 @@
   <%= form_with model: @product, url: admin_product_path  do |f| %>
   <div>
     <%= f.label :image_id, "商品画像" %>
-    <%# 商品画像 %>
+    <%= f.file_field :image %>
   </div>
 
   <div>
@@ -18,6 +18,9 @@
   </div>
 
   <div>
+    <%= f.label :genre_id, "ジャンル" %>
+    <%= f.collection_select :genre_id, @genre, :id, :name %>
+
   </div>
 
   <div>
@@ -27,7 +30,10 @@
 
   <div>
     <%= f.label :is_active, "販売ステータス" %>
-    <%# radio_button %>
+    <%= f.radio_button :is_active, :true %>
+    <%= f.label :is_active, "販売中" %>
+    <%= f.radio_button :is_active, :false%>
+    <%= f.label :is_active, "販売停止中" %>
   </div>
 
 

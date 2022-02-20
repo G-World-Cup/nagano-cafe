@@ -3,6 +3,7 @@ class Admin::ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @genre = Genre.all
   end
 
   def create
@@ -22,6 +23,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @genre = Genre.all
   end
 
   def update
