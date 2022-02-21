@@ -1,46 +1,62 @@
-
-<h2>ショッピングカート</h2>
- <div>
-  <%= link_to "カートを空にする", cart_items_path, method: :delete, data: {confirm: "カートを空にしますか？"} %>
- </div>
-    <table>
-      <thead>
-        <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-          <th ></th>
-          </tr>
-      </thead>
-
-      <% @cart_items.each do |cart_item| %>
-        <tbody>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-4">
+    <div class="col-8 d-flex justify-content-between">
+      <div>
+        <h2 class="mb-4">ショッピングカート</h2>
+      </div>
+      <div>
+        <%= link_to "カートを空にする", cart_items_path, method: :delete, class: 'btn btn-sm btn-danger mt-3', data: {confirm: "カートを空にしますか？"} %>
+      </div>
+    </div>
+    <div class="col-8">
+      <table class="table table-bordered">
+        <!--テーブル一番目のRow-->
+        <thead>
           <tr>
-            <td><%= cart_item.product.name %></>
-            <td><%= (cart_item.product.price * 1.1).floor %></td>
-            <td>
-             <%= form_with model: cart_item do |f| %>
-              <div>
-                <%= f.select :count, *[1..5] %>
-                <%= f.submit "変更" %>
-              </div>
-             <% end %>
-            </td>
-            <td>
-              <%= ((cart_item.product.price * 1.1).floor * cart_item.count).to_s(:delimited) %>
-            </td>
-            <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete %></td>
+            <th scope="col">商品</th>
+            <th scope="col">単価(税込)</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+            <th></th>
           </tr>
-        </tbody>
-      <% end %>
-        <td>
-          <div>合計金額 <%= @total_price.to_s(:delimited) %>円</div>
-          <div><%= link_to "買い物を続ける", products_customers_path %></div>
-          <% if @cart_items != [] %>
-           <div>
-            <%= link_to "情報入力に進む", new_customer_order_path(current_customer.id) %>
-          <% end %>
-          </div>
-        </td>
+        </thead>
+        <!--テーブルのボディー-->
+        <% @cart_items.each do |cart_item| %>
+          <tbody>
+            <tr scope="row">
+              <td><%= cart_item.product.name %></>
+              <td><%= (cart_item.product.price * 1.1).floor %>円</td>
+              <td>
+               <%= form_with model: cart_item do |f| %>
+                <div class="d-flex justify-content-evenly">
+                  <div><%= f.select :count, *[1..5] %></div>
+                  <div><%= f.submit "変更", class: 'btn btn-sm btn-success' %></div>
+                </div>
+               <% end %>
+              </td>
+              <td>
+                <%= ((cart_item.product.price * 1.1).floor * cart_item.count).to_s(:delimited) %>円
+              </td>
+              <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+            </tr>
+          </tbody>
+        <% end %>
       </table>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8 d-flex justify-content-between">
+      <div class="offset-1"><%= link_to "買い物を続ける", products_customers_path, class: 'btn btn-sm btn-primary' %></div>
+      <div class="border-bottom border-dark">合計金額 <%= @total_price.to_s(:delimited) %>円</div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8 d-flex justify-content-center mt-3">
+      <% if @cart_items != [] %>
+        <div>
+          <%= link_to "情報入力に進む", new_customer_order_path(current_customer.id), class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
