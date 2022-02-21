@@ -7,7 +7,7 @@
   <div class="row my-3">
 		<div class="offset-sm-4 headline">
       <h2>登録情報</h2>
-      <div><%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-success" %></div>
+      <div class="my-auto"><%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-sm btn-success ms-3" %></div>
     </div>
   </div>
   <div class="row">
@@ -44,8 +44,8 @@
 	        <td><%= @customer.email %></td>
         </tr>
       </table>
-      <div class="my-2"><%= link_to "配送先一覧", addresses_path,class: "btn btn-info" %></div>
-      <div class="my-1"><%= link_to "注文履歴一覧", "", class: "btn btn-info" %></div>
+      <div class="my-2"><%= link_to "配送先一覧", addresses_path,class: "btn btn-sm btn-info" %></div>
+      <div class="my-1"><%= link_to "注文履歴一覧", customer_orders_path(current_customer.id), class: "btn btn-sm btn-info" %></div>
     </div>
   </div>
 </div>
