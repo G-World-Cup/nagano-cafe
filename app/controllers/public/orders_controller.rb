@@ -9,8 +9,16 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
-
+    @cart_items = CartItem.all
     if @order.save
+      @cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.product_id = cart_item.product_id
+      @order_detail.order_id = @order.id
+      @order_detail.count = cart_item.count
+      @order_detail.price = cart_item.product.price
+      @order_detail.save
+      end
       redirect_to complete_customer_orders_path
     else
       @order = Order.new(order_params)

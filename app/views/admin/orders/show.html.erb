@@ -22,7 +22,7 @@
       <td>注文ステータス</td>
       <td>
         <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
-        <%= f.select :order_status, Order.order_statuses.keys %>
+        <%= f.select :order_status, Order.order_statuses.keys.map{ |k| [I18n.t("enums.order.order_status.#{k}"),k]} %>
         <%= f.submit '更新' %>
         <% end %>
       </td>
@@ -42,7 +42,7 @@
         <% @order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.product.name %></td>
-          <td><%= order_detail.product.add_tax_price.to_s(:delimited) %></td>
+          <td><%= order_detail.product.price.to_s(:delimited) %></td>
           <td><%= order_detail.count %></td>
           <td><%= order_detail.price * order_detail.count %></td>
             <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
@@ -67,7 +67,7 @@
 　    </tr>
 　    <tr>
 　      <td>請求額</td>
-　      <td><%= @total_price + @order.postage %>円</td>
+　      <td></td>
 　    </tr>
 　  </table>
 　</div>
