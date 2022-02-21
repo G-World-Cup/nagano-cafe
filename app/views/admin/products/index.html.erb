@@ -25,9 +25,9 @@
                 <td><%= product.price.to_s(:delimited) %>￥</td>
                 <td><%= product.genre.name %></td>
                 <% if product.is_active == true %>
-                <td>販売中</td>
+                <td class="scolor1">販売中</td>
                 <% else %>
-                <td>販売停止中</td>
+                <td class="scolor2">販売停止中</td>
                 <% end %>
               </tr>
             <% end %>
