@@ -5,6 +5,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order = @order_detail.order
     @order_details = @order.order_details
     @order_detail.update(order_detail_params)
+    redirect_to request.referer
   end
 
   private
