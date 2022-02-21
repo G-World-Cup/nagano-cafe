@@ -10,13 +10,13 @@
           </tr>
           <tr>
         	  <th>氏名</th>
-        	  <td><%= @customer.first_name %></td>
         	  <td><%= @customer.last_name %></td>
+        	  <td><%= @customer.first_name %></td>
           </tr>
           <tr>
             <th>フリガナ</th>
-            <td><%= @customer.first_name_kana %></td>
             <td><%= @customer.last_name_kana %></td>
+            <td><%= @customer.first_name_kana %></td>
           </tr>
           <tr>
             <th>郵便暗号</th>
@@ -36,13 +36,11 @@
           </tr>
           <tr>
             <th>会員ステータス</th>
-            <td>
-              <% if @customer.is_deleted == false %>
-                <p>有効</p>
-              <% else %>
-                <p>退会</p>
-              <% end %>
-            </td>
+            <% if @customer.is_deleted == false %>
+              <td class="scolor1">有効</td>
+            <% else %>
+              <td class="scolor2">退会</td>
+            <% end %>
           </tr>
         </tbody>
       </table>

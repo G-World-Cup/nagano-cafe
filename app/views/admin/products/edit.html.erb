@@ -1,7 +1,7 @@
 <div class="container">
   <h2>商品編集</h2>
   <div class="row">
-    <div class="col-3">
+    <div class="col-5">
       <%= form_with model: @product, url: admin_product_path  do |f| %>
         <table class="cart_products">
           <tr>
@@ -16,25 +16,28 @@
             <th>商品説明</th>
             <td><%= f.text_area :introduction, :placeholder => "ここに説明文を記述します" %></td>
           </tr>
-          <div>
-            <%= f.label :genre_id, "ジャンル" %>
-            <%= f.collection_select :genre_id, @genre, :id, :name %>
-          </div>
-          <div>
-            <%= f.label :price, "税抜価格" %>
-            <%= f.text_field :price, :placeholder => "1000" %><span>円</span>
-          </div>
-          <div>
-            <%= f.label :is_active, "販売ステータス" %>
-            <%= f.radio_button :is_active, :true %>
-            <%= f.label :is_active, "販売中" %>
-            <%= f.radio_button :is_active, :false%>
-            <%= f.label :is_active, "販売停止中" %>
-          </div>
-          <div>
-            <%= f.submit "変更を保存" %>
-          </div>
+          <tr>
+            <th>ジャンル</th>
+            <td><%= f.collection_select :genre_id, @genre, :id, :name %></td>
+          </tr>
+          <tr>
+            <th>税抜価格</th>
+            <td><%= f.text_field :price, :placeholder => "1000" %><span>円</span></td>
+          </tr>
+          <tr>
+            <th>販売ステータス</th>
+            <td>
+              <%= f.radio_button :is_active, :true %>
+              <%= f.label :is_active, "販売中" %>
+              <%= f.radio_button :is_active, :false%>
+              <%= f.label :is_active, "販売停止中" %>
+            </td>
+          </tr>
         </table>
+        <br>
+        <div>
+          <%= f.submit "変更を保存" %>
+        </div>
       <% end %>
     </div>
   </div>
