@@ -22,6 +22,6 @@ class Admin::OrdersController < ApplicationController
     end
 
     def order_params
-      params.reguire(:order).permit(:order_status)
+      params.require(:order).permit(:order_status)
     end
 end

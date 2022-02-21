@@ -3,7 +3,7 @@
   <table>
     <tr>
       <td>購入者</td>
-      <td><%= link_to @order.customer.first_name + order.customer.last_name, admin_customer_path(@order.customer) %></td>
+      <td><%= link_to @order.customer.first_name + @order.customer.last_name, admin_customer_path(@order.customer) %></td>
     </tr>
     <tr>
       <td>注文日</td>
@@ -12,7 +12,7 @@
     <tr>
       <td>配送先</td>
       <td><%= @order.customer_postcode %><%= @order.customer_address %><br>
-      <%= @order.customer.first_name + order.customer.last_name %></td>
+      <%= @order.customer.first_name + @order.customer.last_name %></td>
     </tr>
     <tr>
       <td>支払方法</td>
