@@ -1,15 +1,13 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-8 m-auto">
-
-
       <h1>ジャンル一覧・追加</h1>
       <div>
         <%= form_with model: @genre,  url: admin_genres_path do |f| %>
         <div>
           <%= f.label :name, "ジャンル名" %>
           <%= f.text_field :name %>
-          <%= f.submit "新規登録" %>
+          <%= f.submit "新規登録", class: "btn btn-sm btn-success" %>
         </div>
         <% end %>
       </div>
@@ -23,7 +21,7 @@
               <% @genres.each do |genre| %>
               <tr>
                 <td><%= genre.name %></td>
-                <td><%= link_to "編集する" , edit_admin_genre_path(genre) %></td>
+                <td><%= link_to "編集する" , edit_admin_genre_path(genre), class: "btn btn-outline-success" %></td>
               </tr>
               <% end %>
             </tbody>

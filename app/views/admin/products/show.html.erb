@@ -1,32 +1,42 @@
-<h1>商品詳細</h1>
-<div>
-  <div>
-  <p>商品画像</p>
-  </div>
-  <div>
-  <p>商品名</p>
-  <p><%= @product.name %></p>
-  </div>
-  <p>商品説明</p>
-  <p><%= @product.introduction %></p>
-  </div>
-  <div>
-    <p>ジャンル</p>
-    <p><%= @product.genre.name %></p>
-  </div>
-  <div>
-    <p>税込価格<br>（税抜価格）</p>
-    <%= @product.price.to_s(:delimited) %><span>円</span></p>
-  </div>
-  <div>
-    <% if @product.is_active == true %>
-    <p>販売中</p>
-    <% else %>
-    <p>販売停止中</p>
-    <% end %>
+<div class="container">
+  <h2>商品詳細</h2>
+  <div class="row">
+		<div class="col-md-3">
+      <%= image_tag @product.product_image, size: "200x150" %>
+    </div>
+    <div class="col-md-9">
+      <table class="table-box">
+        <tr>
+          <th>商品名</th>
+          <td><%= @product.name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= @product.introduction %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @product.genre.name %></td>
+        </tr>
+        <tr>
+          <th>税込み価格<br>（税抜価格）</th>
+          <td><%= @product.price.to_s(:delimited) %><span>円</span></td>
+        </tr>
+        <tr>
+          <th>販売ステータス</th>
+          <td>
+            <% if @product.is_active == true %>
+              <p class="">販売中</p>
+            <% else %>
+              <p class="">販売停止中</p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <div class="edit-box">
+        <%= link_to "編集する",edit_admin_product_path(@product), class: "btn btn-success " %>
+      </div>
+    </div>
   </div>
 </div>
-
-  <div>
-    <%= link_to "編集する",edit_admin_product_path(@product) %>
-  </div>
