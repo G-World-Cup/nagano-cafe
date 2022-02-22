@@ -40,14 +40,14 @@ class Public::OrdersController < ApplicationController
       @order = Order.new(order_params)
       @order.customer_postcode = current_customer.postcode
       @order.customer_address = current_customer.address
-      @order.customer_name = current_customer.first_name + current_customer.last_name
+      @order.customer_name = current_customer.last_name + current_customer.first_name
     # 登録済みの住所
-    elsif params[:order] == "2"
+    elsif params[:order][:address_id] == "2" #address_idを
       @order = Order.new(order_params)
-      @address = Address.find(params[:order][:address_id])
-      @order.customer_postcode = @address.postcode
-      @order.customer_address = @address.address
-      @order.customer_name = @address.customer_name
+      @address = Address.find(params[:order][:addresses]) #address_idをaddressesに変更
+      @order.customer_postcode = @address.postal_code #adressesモデルのカラムの名前が誤っていた
+      @order.customer_address = @address.shipping_address #adressesモデルのカラムの名前が誤っていた
+      @order.customer_name = @address.name
     # 新しいお届け先
     elsif params[:order][:address_id] == "3"
       @order = Order.new(order_params)

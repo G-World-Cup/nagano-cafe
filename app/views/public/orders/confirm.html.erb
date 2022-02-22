@@ -41,21 +41,33 @@
     </div>
   </div>
 
-    <div>
+  <div class="row">
+    <div class="col-2">
       <h3>支払方法</h3>
-      <%= @order.payment_method %>
     </div>
-    <div>
+    <div class="col-2">
+      <%= @order.payment_method_i18n %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 mt-4">
       <h3>お届け先</h3>
-      <%= @order.customer_postcode %>
+    </div>
+    <div class="col-4 mt-4">
+      〒<%= @order.customer_postcode %>&nbsp;&nbsp;
       <%= @order.customer_address %>
+      <br>
       <%= @order.customer_name %>
     </div>
-
-    <%= form_with model: @order, url: customer_orders_path, method: :post, local: true do |f| %>
-      <%= f.hidden_field :customer_postcode %>
-      <%= f.hidden_field :customer_address %>
-      <%= f.hidden_field :customer_name %>
-      <%= f.submit "注文を確定する", class: 'btn btn-primary' %>
-    <% end %>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col- d-flex justify-content-center mt-3">
+      <%= form_with model: @order, url: customer_orders_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :customer_postcode %>
+        <%= f.hidden_field :customer_address %>
+        <%= f.hidden_field :customer_name %>
+        <%= f.submit "注文を確定する", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
 </div>
