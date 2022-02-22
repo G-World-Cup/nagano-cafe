@@ -20,6 +20,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.save
       end
       redirect_to complete_customer_orders_path
+      @cart_items.destroy_all
     else
       @order = Order.new(order_params)
       render :new
@@ -41,7 +42,7 @@ class Public::OrdersController < ApplicationController
       @order.customer_address = current_customer.address
       @order.customer_name = current_customer.first_name + current_customer.last_name
     # 登録済みの住所
-    elsif params[:order][:address_id] == "2"
+    elsif params[:order] == "2"
       @order = Order.new(order_params)
       @address = Address.find(params[:order][:address_id])
       @order.customer_postcode = @address.postcode

@@ -18,6 +18,7 @@
         <td>
           <% order.order_details.each do |order_detail| %>
             <%= order_detail.product.name %><br />
+            <%= (order_detail.count * order_detail.price * 1.10).floor.to_s(:delimited) %>
           <% end %>
         </td>
         <td><%# (order.postage + @total_price).to_s(:delimited) %>円</td>
