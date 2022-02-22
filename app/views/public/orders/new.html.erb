@@ -27,9 +27,8 @@
         <div class="mt-3">
           <%= f.radio_button :address_id, 2 %>
           <%= f.label :address_id_2, "登録済の住所" %>
-          <%= f.collection_select(:registered, current_customer.addresses.all, :id, :address) %>
+          <%= f.select "addresses", options_from_collection_for_select(current_customer.addresses.all, "id", "shipping_address") %>
         </div>
-
 
         <!--新しい住所を入力-->
       <div class="row d-flex justify-content-start mt-3">
