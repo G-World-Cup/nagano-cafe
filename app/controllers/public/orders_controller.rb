@@ -58,7 +58,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.where(customer_id:current_customer)
   end
 
   def show
@@ -76,7 +76,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def set_order
-    @order = Order.find(params[:id])
+    @order = Order.find_by(params[:customer_id])
   end
 
   def order_params
