@@ -14,7 +14,10 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= order.customer_address %></td>
+        <td><%= "〒" +order.customer_postcode %><br>
+            <%= order.customer_address %><br>
+            <%= order.customer_name %>
+        </td>
         <td>
           <% order.order_details.each do |order_detail| %>
             <%= order_detail.product.name %><br />
