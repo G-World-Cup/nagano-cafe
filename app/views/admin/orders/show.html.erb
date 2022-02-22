@@ -7,7 +7,7 @@
     </tr>
     <tr>
       <td>注文日</td>
-      <td><%= @order.created_at %></td>
+      <td><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
     </tr>
     <tr>
       <td>配送先</td>
@@ -39,16 +39,19 @@
 　        <th>小計</th>
 　        <th>制作ステータス</th>
         </tr>
+        <%# 商品合計の変数定義 %>
+        <% item_total_price = 0 %>
         <% @order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.product.name %></td>
-          <td><%= order_detail.product.price.to_s(:delimited) %></td>
+          <td><%= order_detail.product.add_tax.to_s(:delimited) %></td>
           <td><%= order_detail.count %></td>
-          <td><%= order_detail.price * order_detail.count %></td>
+          <td><%= order_detail.product.add_tax * order_detail.count %></td>
             <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
           <td><%=f.select :making_status, OrderDetail.making_statuses.keys %></td>
           <td><%=f.submit "更新" %></td>
           <% end %>
+          <% item_total_price += order_detail.product.add_tax * order_detail.count %>
         </tr>
         <% end %>
 　    </thead>
@@ -59,7 +62,7 @@
 　  <table>
 　    <tr>
 　    <td>商品合計</td>
-　    <td>円</td>
+　    <td><%= item_total_price %>円</td>
 　    </tr>
 　    <tr>
 　    <td>送料</td>
@@ -67,7 +70,7 @@
 　    </tr>
 　    <tr>
 　      <td>請求額</td>
-　      <td></td>
+　      <td><%= item_total_price + @order.postage %>円</td>
 　    </tr>
 　  </table>
 　</div>
