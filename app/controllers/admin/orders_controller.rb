@@ -11,8 +11,16 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order.update(order_params)
-    redirect_to request.referer
     @order_details = @order.order_details
+
+
+    if @order.order_status == "check_pay"
+      @order_details.each do |order_detail|
+        order_detail.making_status = "waiting_production"
+        order_detail.save
+      end
+    end
+    redirect_to request.referer
   end
 
  private
