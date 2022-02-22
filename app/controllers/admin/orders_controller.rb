@@ -7,7 +7,6 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order_details = @order.order_details
-
   end
 
   def update

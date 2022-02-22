@@ -16,4 +16,6 @@ class Product < ApplicationRecord
   def add_tax
     (self.price * 1.10).round
   end
+  
+  
 end
