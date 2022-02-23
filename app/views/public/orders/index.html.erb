@@ -24,7 +24,7 @@
           <% end %>
         </td>
         <td><%= order.postage + order.total_price %>円</td>
-        <td><%= order.order_status %></td>
+        <td><%= order.order_status_i18n %></td>
         <td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
       </tr>
     <% end %>
