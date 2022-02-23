@@ -15,9 +15,9 @@
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td><%= cart_item.product.name %></td> <!-- 商品名 -->
-              <td><%= cart_item.product.price %>円</td><!-- 金額 -->
+              <td><%= (cart_item.product.price*1.1).floor.to_s(:delimited) %>円</td><!-- 金額 -->
               <td><%= cart_item.count %></td> <!-- 個数 -->
-              <td><%= (cart_item.product.price*cart_item.count).to_s(:delimited) %>円</td> <!-- 小計 -->
+              <td><%= ((cart_item.product.price*cart_item.count)*1.1).floor.to_s(:delimited) %>円</td> <!-- 小計 -->
             </tr>
           <% end %>
         </thody>
