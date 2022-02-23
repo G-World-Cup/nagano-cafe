@@ -31,11 +31,11 @@
         </tr>
         <tr>
           <th>商品合計</th>
-          <td><%= @total_price.to_s(:delimited) %>円</td>
+          <td><%= @total.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>請求金額</td>
-          <td><%= (@order.postage + @total_price).to_s(:delimited) %>円</td>
+          <td><%= (@order.postage + @total).to_s(:delimited) %>円</td>
         </tr>
       </table>
     </div>
@@ -62,10 +62,11 @@
   </div>
   <div class="row d-flex justify-content-center">
     <div class="col- d-flex justify-content-center mt-3">
-      <%= form_with model: @order, url: customer_orders_path, method: :post, local: true do |f| %>
+      <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :customer_postcode %>
         <%= f.hidden_field :customer_address %>
         <%= f.hidden_field :customer_name %>
+        <%= f.hidden_field :total_price, value: @total %>
         <%= f.submit "注文を確定する", class: 'btn btn-primary' %>
       <% end %>
     </div>
