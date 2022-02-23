@@ -4,7 +4,6 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @total_price = calculate(current_customer)
   end
 
   def create
@@ -19,7 +18,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.price = cart_item.product.price
       @order_detail.save
       end
-      redirect_to complete_customer_orders_path
+      redirect_to complete_orders_path
       @cart_items.destroy_all
     else
       @order = Order.new(order_params)
@@ -28,11 +27,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    # カートアイテムの情報
-    @cart_items = current_customer.cart_items.all
+    @order = Order.new(order_params)
 
     # 商品の合計額
-    @total_price = calculate(current_customer)
 
     # newページで選択した住所の表示
     # 自身の住所
@@ -43,43 +40,44 @@ class Public::OrdersController < ApplicationController
       @order.customer_name = current_customer.last_name + current_customer.first_name
     # 登録済みの住所
     elsif params[:order][:address_id] == "2" #address_idを
-      @order = Order.new(order_params)
       @address = Address.find(params[:order][:addresses]) #address_idをaddressesに変更
-      @order.customer_postcode = @address.postal_code #adressesモデルのカラムの名前が誤っていた
-      @order.customer_address = @address.shipping_address #adressesモデルのカラムの名前が誤っていた
-      @order.customer_name = @address.name
+      @order.customer_postcode = @address.customer_postcode #adressesモデルのカラムの名前が誤っていた
+      @order.customer_address = @address.customer_address #adressesモデルのカラムの名前が誤っていた
+      @order.customer_name = @address.customer_name
     # 新しいお届け先
     elsif params[:order][:address_id] == "3"
-      @order = Order.new(order_params)
+      address_new = current_customer.addresses.new(address_params)
+      if address_new.save # 確定前(確認画面)で save してしまうことになりますが、私の知識の限界でした
+      end
+    else
+      redirect_to root_path # ありえないですが、万が一当てはまらないデータが渡ってきた場合の処理です
     end
+    # カートアイテムの情報
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
   end
 
   def complete
   end
 
   def index
-    @orders = Order.where(customer_id:current_customer)
+    @orders = current_customer.orders.all
   end
 
   def show
-    @total_price = calculate(current_customer)
   end
 
   private
 
-  def calculate(current_customer)
-   total_price = 0
-   current_customer.cart_items.each do |cart_item|
-     total_price += cart_item.count * cart_item.product.price
-   end
-   return (total_price * 1.1).floor
-  end
-
   def set_order
-    @order = Order.find_by(params[:customer_id])
+    @order = Order.find(params[:id])
   end
 
   def order_params
-    params.require(:order).permit(:payment_method, :customer_postcode, :customer_address, :customer_name)
+    params.require(:order).permit(:customer_id, :payment_method, :total_price, :customer_postcode, :customer_address, :customer_name, :postage, :order_status)
+  end
+
+  def address_params
+    params.require(:order).permit(:customer_postcode, :customer_address, :customer_name, :customer_id)
   end
 end

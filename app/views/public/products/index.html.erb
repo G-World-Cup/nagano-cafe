@@ -1,5 +1,12 @@
 <!--会員側の商品一覧-->
 
+<!--カートに同じ商品が入った場合のエラーメッセージ-->
+<% flash.each do |type, msg| %>
+  <div style="font-size: 26px;">
+    <%= msg %>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-3">

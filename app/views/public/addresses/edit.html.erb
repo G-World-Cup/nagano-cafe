@@ -12,7 +12,7 @@
           <%= f.label :郵便番号, class: 'mt-1' %>
         </div>
         <div class="col-2 mt-2">
-          <%= f.text_field :postcode, placeholder: '0000-0000', class: "form-control" %>
+          <%= f.text_field :customer_postcode, placeholder: '0000-0000', class: "form-control" %>
         </div>
         <div class="col-8 mt-2"></div>
         <!--住所の列-->
@@ -20,7 +20,7 @@
           <%= f.label :住所, class: 'mt-1' %>
         </div>
         <div class="col-4 mt-2">
-          <%= f.text_field :address, placeholder: '山形県山形市香澄町', class: "form-control" %>
+          <%= f.text_field :customer_address, placeholder: '山形県山形市香澄町', class: "form-control" %>
         </div>
         <div class="col-6 mt-2"></div>
         <!--宛名の列-->
@@ -28,7 +28,7 @@
           <%= f.label :宛名, class: 'mt-1' %>
         </div>
         <div class="col-2 mt-2">
-          <%= f.text_field :name, class: "form-control" %>
+          <%= f.text_field :customer_name, class: "form-control" %>
         </div>
         <div class="col-8 mt-2"></div>
         <!--確認ボタンの列-->

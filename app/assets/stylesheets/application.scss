@@ -14,11 +14,39 @@
  @import "bootstrap";
 
  .nav-bg {
-   background-color: #ccfbfe;
+   background-color: #F45B69;
  }
 
  .footer-bg {
-   background-color: #A6F6FC;
+   background-color: #6B2737;
+ }
+
+ .twitter {
+   color: #00aced;
+ }
+
+ .insta {
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+ }
+
+ .insta:hover {
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+ }
+
+ .fb-square {
+  color: #3b5998;
+  background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 93%, transparent 93% );
+  background-size: 44%;
+  background-position: 55% 0;
+  background-repeat: no-repeat;
  }
 
  .headline {
