@@ -3,7 +3,7 @@
   <table>
     <tr>
       <td>購入者</td>
-      <td><%= link_to @order.customer.first_name + @order.customer.last_name, admin_customer_path(@order.customer) %></td>
+      <td><%= link_to @order.customer.last_name + @order.customer.first_name, admin_customer_path(@order.customer) %></td>
     </tr>
     <tr>
       <td>注文日</td>
@@ -12,7 +12,7 @@
     <tr>
       <td>配送先</td>
       <td><%= @order.customer_postcode %><%= @order.customer_address %><br>
-      <%= @order.customer.first_name + @order.customer.last_name %></td>
+      <%= @order.customer.last_name + @order.customer.first_name %></td>
     </tr>
     <tr>
       <td>支払方法</td>
@@ -48,7 +48,7 @@
           <td><%= order_detail.count %></td>
           <td><%= order_detail.product.add_tax * order_detail.count %></td>
             <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
-          <td><%=f.select :making_status, OrderDetail.making_statuses.keys %></td>
+          <td><%=f.select :making_status, OrderDetail.making_statuses.keys.map{ |k| [I18n.t("enums.order_detail.making_status.#{k}"),k]} %></td>
           <td><%=f.submit "更新" %></td>
           <% end %>
           <% item_total_price += order_detail.product.add_tax * order_detail.count %>
