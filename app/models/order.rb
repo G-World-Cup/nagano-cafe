@@ -10,5 +10,5 @@ class Order < ApplicationRecord
     self.order_details.all.sum(:count)
   end
 
-　
+  
 end
