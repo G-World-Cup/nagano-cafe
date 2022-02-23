@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
   before_action :set_product, only: [:edit, :update]
+  before_action :authenticate_admin!
 
 
   def index

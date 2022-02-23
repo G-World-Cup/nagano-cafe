@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-5">
   <h2>商品詳細</h2>
   <div class="row">
 		<div class="col-md-3">
@@ -20,23 +20,23 @@
         </tr>
         <tr>
           <th>税込み価格<br>（税抜価格）</th>
-          <td><%= @product.add_tax.to_s(:delimited) %>(<%= @product.price.to_s(:delimited) %>)<span>円</span></td>
+          <td><%= @product.add_tax.to_s(:delimited) %><br>(<%= @product.price.to_s(:delimited) %>)<span>円</span></td>
         </tr>
         <tr>
           <th>販売ステータス</th>
-          <td>
-            <% if @product.is_active == true %>
-              <p class="">販売中</p>
-            <% else %>
-              <p class="">販売停止中</p>
-            <% end %>
-          </td>
+          <% if @product.is_active == true %>
+            <td class="scolor1">販売中</td>
+          <% else %>
+            <td class="scolor2">販売停止中</td>
+          <% end %>
         </tr>
       </table>
-      <br>
-      <div class="edit-box">
-        <%= link_to "編集する",edit_admin_product_path(@product), class: "btn btn-success " %>
-      </div>
     </div>
   </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-2 my-2 d-flex justify-content-start">
+        <%= link_to "編集する",edit_admin_product_path(@product), class: "btn btn-sm btn-success" %>
+      </div>
+    </div>
 </div>

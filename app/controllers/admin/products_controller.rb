@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update]
+  before_action :authenticate_admin!
 
   def new
     @product = Product.new
