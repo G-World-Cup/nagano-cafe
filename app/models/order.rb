@@ -9,7 +9,6 @@ class Order < ApplicationRecord
   def total_count
     self.order_details.all.sum(:count)
   end
-  
-  
 
+  
 end
