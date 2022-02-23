@@ -4,7 +4,7 @@
 
     <h2>注文入力</h2>
     <!--url追加-->
-      <%= form_with model: @order, url: confirm_customer_orders_path, method: :get, local: true do |f| %>
+      <%= form_with model: @order, url: confirm_orders_path, method: :get, local: true do |f| %>
         <h4>支払い方法</h4>
         <div>
             <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
@@ -27,7 +27,7 @@
         <div class="mt-3">
           <%= f.radio_button :address_id, 2 %>
           <%= f.label :address_id_2, "登録済の住所" %>
-          <%= f.select "addresses", options_from_collection_for_select(current_customer.addresses.all, "id", "shipping_address") %>
+          <%= f.select "addresses", options_from_collection_for_select(current_customer.addresses.all, "id", "customer_address") %>
         </div>
 
         <!--新しい住所を入力-->

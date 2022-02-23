@@ -17,5 +17,7 @@ class CartItem < ApplicationRecord
      end
   end
 
- 
+  def sum_price # 実際に作成したサイトは税金も算出していたのでメソッドを記載していました
+    product.add_tax*count
+  end
 end

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-5">
   <h2>商品詳細</h2>
   <div class="row">
 		<div class="col-md-3">
@@ -30,16 +30,17 @@
             <td class="scolor2">販売停止中</td>
           <% end %>
         </tr>
-        <tr>
-          <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-          <td>
-            <%= f.hidden_field :product_id, :value => @product.id %>
-            <%= f.select :count, *[1..5] %>
-          </td>
-          <td><%= f.submit "カートに入れる", class: "btn btn-success ms-2" %></td>
-          <% end %>
-        </tr>
       </table>
     </div>
   </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-2 mt-2 d-flex justify-content-start">
+        <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+          <%= f.hidden_field :product_id, :value => @product.id %>
+          <%= f.select :count, *[1..5] %>
+          <%= f.submit "カートに追加", class: "btn btn-success mt-2" %>
+        <% end %>
+      </div>
+    </div>
 </div>
