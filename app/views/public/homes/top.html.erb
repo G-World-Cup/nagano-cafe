@@ -1,0 +1,48 @@
+<!--サイトの紹介文-->
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="card mt-5 box-shadow">
+        <div class="card-header">
+          ジャンル検索
+        </div>
+        <div class="card-body">
+          <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="ジャンル検索" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="card mt-5 box-shadow" style="width: 25rem;">
+        <div class="card-body">
+          <p class="card-text">
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトでございます。<br>
+            会員でない方でも商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </p>
+        </div>
+      </div>
+      <div class="mt-3">
+        <h3>新着商品</h3>
+      </div>
+      <div>
+        <% @products.each do |product| %>
+        <div class="all-products">
+          <div>
+            <%= link_to product_customers_path(product) do %>
+              <%= image_tag product.product_image, size: "200x150" %>
+            <% end %>
+          </div>
+          <div><%= product.name %></div>
+          <div><%= product.price.to_s(:delimited) %>円</div>
+        </div>
+        <% end %>
+      </div>
+        <p class="text-end fs-5"><%= link_to "全ての商品へ", products_customers_path, class: 'text-decoration-none' %></p>
+      </div>
+    </div>
+  </div>
+</div>

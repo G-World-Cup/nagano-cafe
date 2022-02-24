@@ -1,0 +1,99 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+ @import "bootstrap";
+
+ .nav-bg {
+   background-color: #F45B69;
+ }
+
+ .footer-bg {
+   background-color: #6B2737;
+ }
+
+ .twitter {
+   color: #00aced;
+ }
+
+ .insta {
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+ }
+
+ .insta:hover {
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+ }
+
+ .fb-square {
+  color: #3b5998;
+  background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 93%, transparent 93% );
+  background-size: 44%;
+  background-position: 55% 0;
+  background-repeat: no-repeat;
+ }
+
+ .headline {
+  display: flex;
+ }
+
+ .all-products {
+  display: inline-block;
+  margin: 0.5em;
+ }
+
+ .box-shadow {
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+ }
+
+ .tcolor {
+  color: green;
+ }
+
+ .scolor1 {
+  color: #00DD00;
+  font-weight: bold;
+ }
+
+ .scolor2 {
+  color: #FF0000;
+  font-weight: bold;
+ }
+
+ .tcolor:hover {
+  color: green;
+ }
+
+ select {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+ }

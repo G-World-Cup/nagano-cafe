@@ -1,0 +1,74 @@
+<div class="container my-5">
+  <h3>注文情報確認</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= cart_item.product.name %></td> <!-- 商品名 -->
+              <td><%= (cart_item.product.price*1.1).floor.to_s(:delimited) %>円</td><!-- 金額 -->
+              <td><%= cart_item.count %></td> <!-- 個数 -->
+              <td><%= ((cart_item.product.price*cart_item.count)*1.1).floor.to_s(:delimited) %>円</td> <!-- 小計 -->
+            </tr>
+          <% end %>
+        </thody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <table class="table">
+        <tr>
+          <th>送料</th>
+          <td><%= @order.postage %>円</td>
+        </tr>
+        <tr>
+          <th>商品合計</th>
+          <td><%= @total.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th>請求金額</td>
+          <td><%= (@order.postage + @total).to_s(:delimited) %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <h3>支払方法</h3>
+    </div>
+    <div class="col-2">
+      <%= @order.payment_method_i18n %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 mt-4">
+      <h3>お届け先</h3>
+    </div>
+    <div class="col-4 mt-4">
+      〒<%= @order.customer_postcode %>&nbsp;&nbsp;
+      <%= @order.customer_address %>
+      <br>
+      <%= @order.customer_name %>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col- d-flex justify-content-center mt-3">
+      <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :customer_postcode %>
+        <%= f.hidden_field :customer_address %>
+        <%= f.hidden_field :customer_name %>
+        <%= f.hidden_field :total_price, value: @total %>
+        <%= f.submit "注文を確定する", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

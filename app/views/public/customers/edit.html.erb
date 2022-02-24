@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-3">
+      <h2 class="offset-2">会員情報編集</h2>
+    </div>
+  </div>
+  <%= form_with model:@customer, local:true do |f| %>
+    <div class="row d-flex justify-content-start mt-3">
+        <!--名前の列-->
+        <div class="col-2 mt-2">
+          <%= f.label :氏名, class: 'mt-1' %>
+        </div>
+        <div class="col-2 mt-2">
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+        <div class="col-2 mt-2">
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+        <div class="col-6"></div>
+        <!--名前フリガナの列-->
+        <div class="col-2 mt-2">
+          <%= f.label :フリガナ, class: 'mt-1' %>
+        </div>
+        <div class="col-2 mt-2">
+          <%= f.text_field :last_name_kana, class: "form-control" %>
+        </div>
+        <div class="col-2 mt-2">
+          <%= f.text_field :first_name_kana, class: "form-control" %>
+        </div>
+        <div class="col-6"></div>
+        <!--郵便番号の列-->
+        <div class="col-2 mt-2">
+          <%= f.label :郵便番号, class: 'mt-1' %>
+        </div>
+        <div class="col-2 mt-2">
+          <%= f.text_field :postcode, class: "form-control" %>
+        </div>
+        <div class="col-8 mt-2"></div>
+        <!--住所の列-->
+        <div class="col-2 mt-2">
+          <%= f.label :住所, class: 'mt-1' %>
+        </div>
+        <div class="col-4 mt-2">
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+        <div class="col-6 mt-2"></div>
+        <!--電話番号の列-->
+        <div class="col-2 mt-2">
+          <%= f.label :電話番号, class: 'mt-1' %>
+        </div>
+        <div class="col-2 mt-2">
+          <%= f.text_field :phone_number, class: "form-control" %>
+        </div>
+        <div class="col-8 mt-2"></div>
+        <!--メールアドレスの列-->
+        <div class="col-2 mt-2">
+          <%= f.label :メールアドレス, class: 'mt-1' %>
+        </div>
+        <div class="col-2 mt-2">
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="col-8"></div>
+        <!--確認ボタン、退会ボタンの列-->
+        <div class="col-2"></div>
+        <div class="col-4 mt-2">
+          <div class="d-flex bd-highlight mb-3">
+            <div class="bd-highlight"><%= f.submit "編集内容を保存", class: "btn btn-sm btn-success" %></div>
+            <div class="ms-auto bd-highlight"><%= link_to "退会する", withdraw_customer_path(@customer), class: "btn btn-sm btn-danger" %></div>
+          </div>
+        </div>
+    </div>
+    <% end %>
+</div>

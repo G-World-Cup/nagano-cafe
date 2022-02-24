@@ -1,0 +1,42 @@
+<div class="container my-5">
+  <h2>商品詳細</h2>
+  <div class="row">
+		<div class="col-md-3">
+      <%= image_tag @product.product_image, size: "200x150" %>
+    </div>
+    <div class="col-md-9">
+      <table class="table-box">
+        <tr>
+          <th>商品名</th>
+          <td><%= @product.name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= @product.introduction %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @product.genre.name %></td>
+        </tr>
+        <tr>
+          <th>税込み価格<br>（税抜価格）</th>
+          <td><%= @product.add_tax.to_s(:delimited) %><br>(<%= @product.price.to_s(:delimited) %>)<span>円</span></td>
+        </tr>
+        <tr>
+          <th>販売ステータス</th>
+          <% if @product.is_active == true %>
+            <td class="scolor1">販売中</td>
+          <% else %>
+            <td class="scolor2">販売停止中</td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-2 my-2 d-flex justify-content-start">
+        <%= link_to "編集する",edit_admin_product_path(@product), class: "btn btn-sm btn-success" %>
+      </div>
+    </div>
+</div>
