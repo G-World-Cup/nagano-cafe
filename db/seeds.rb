@@ -71,7 +71,7 @@ Genre.create!(name: 'タルト')
 Genre.create!(name: 'クッキー')
 Genre.create!(name: '和菓子')
 
-Product.create!(
+cake1 = Product.new(
     name: 'チーズケーキ',
     introduction: '令和２年に長野県でのチーズケーキコンテストで一位をとったチーズケーキでございます。',
     genre_id: 1,
@@ -81,7 +81,10 @@ Product.create!(
     genre: Genre.find(1)
   )
 
-  Product.create!(
+  cake1.image.attach(io: File.open(File.join(Rails.root, '/app/assets/images/cheese_cake.jpg')), filename: "cheese_cake.jpg")
+  cake1.save
+
+  cake2 = Product.new(
     name: 'キラキラカップケーキ',
     introduction: 'とてもふわふわで、お子様に人気一番のカップケーキでございます。',
     genre_id: 1,
@@ -91,7 +94,10 @@ Product.create!(
     genre: Genre.find(1)
   )
 
-  Product.create!(
+  cake2.image.attach(io: File.open(File.join(Rails.root,'/app/assets/images/cupcake.jpg')), filename: "cupcake.jpg")
+  cake2.save
+
+  cake3 = Product.new(
     name: 'タルトショコラ',
     introduction: 'チョコが好きなお方にはオススメです。',
     genre_id: 3,
@@ -101,9 +107,12 @@ Product.create!(
     genre: Genre.find(3)
   )
 
-  Product.create!(
-    name: '蕎麦茶プリン',
-    introduction: '蕎麦茶プリンは珍しいですが、ぜひお試しください。',
+  cake3.image.attach(io: File.open(File.join(Rails.root,'/app/assets/images/chocotart.jpg')), filename: "chocotart.jpg")
+  cake3.save
+
+  cake4 = Product.new(
+    name: 'タピオカプリン',
+    introduction: 'タピオカプリンは珍しいですが、ぜひお試しください。',
     genre_id: 2,
     image_id: '',
     price: 600,
@@ -111,7 +120,10 @@ Product.create!(
     genre: Genre.find(2)
   )
 
-  Product.create!(
+  cake4.image.attach(io: File.open(File.join(Rails.root,'/app/assets/images/pudding.jpg')), filename: "pudding.jpg")
+  cake4.save
+
+  cake5 = Product.new(
     name: '苺大福',
     introduction: '季節のいちごを使用して、お子様からお年寄りまで、誰でも大好きな苺大福でございます。',
     genre_id: 5,
@@ -120,3 +132,6 @@ Product.create!(
     is_active: true,
     genre: Genre.find(5)
   )
+
+  cake5.image.attach(io: File.open(File.join(Rails.root,'/app/assets/images/ichigo.jpg')), filename: "ichigo.jpg")
+  cake5.save
