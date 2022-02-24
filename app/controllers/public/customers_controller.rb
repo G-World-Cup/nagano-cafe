@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :withdraw, :switch]
   before_action :authenticate_customer!
+  before_action :ensure_correct_customer
 
   def show
   end
@@ -37,5 +38,12 @@ class Public::CustomersController < ApplicationController
 
   def set_customer
     @customer = Customer.find(params[:id])
+  end
+
+  def ensure_correct_customer
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to root_path(current_customer)
+    end
   end
 end
