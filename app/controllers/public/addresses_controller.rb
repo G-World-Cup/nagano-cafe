@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
   before_action :set_address, only: [:edit, :update, :destroy]
 
   def index
-    @addresses = Address.all
+    @addresses = current_customer.addresses.all
     @address = Address.new
   end
 
