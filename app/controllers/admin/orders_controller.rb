@@ -24,6 +24,9 @@ class Admin::OrdersController < ApplicationController
     redirect_to request.referer
   end
 
+  def search
+    @customer = Customer.find(params[:customer_id])
+
  private
 
     def set_order
