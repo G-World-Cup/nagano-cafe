@@ -26,6 +26,7 @@ class Admin::OrdersController < ApplicationController
 
   def search
     @customer = Customer.find(params[:customer_id])
+  end
 
  private
 
