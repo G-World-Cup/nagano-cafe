@@ -26,6 +26,7 @@ class Admin::OrdersController < ApplicationController
 
   def search
     @customer = Customer.find(params[:customer_id])
+     @orders = Order.all.page(params[:page]).per(10)
   end
 
  private
